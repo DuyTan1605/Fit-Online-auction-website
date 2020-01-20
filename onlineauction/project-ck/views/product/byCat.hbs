@@ -1,0 +1,131 @@
+{{#section 'title'}}
+    Danh sách sản phẩm
+{{/section}}
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+    <style type="text/css">
+    label {
+        font-weight: normal !important;
+    }
+    </style>
+{{/section}}
+{{#section 'js'}}
+    <script type="text/javascript">
+    $('.addItem').on('click', function() {
+        var proId = $(this).data('id');
+        $('#txtP').val(proId);
+        $('#frmAddToCart').submit();
+    });
+    </script>
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+        </ol>
+        <!-- /Đường dẫn -->
+    </div>
+{{/section}}
+{{> categoriesPanel this}}
+<div class="col-md-9">
+    <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color: slateblue">
+            <span class="panel-title">Danh sách sản phẩm</span>
+        </div>
+        <div class="panel-body">
+            {{#if isEmpty }}
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong style="color: red   ;">Hiện tại chúng tôi chưa có sản phẩm thuộc danh mục này!</strong>
+                    <img src="/crying.png" style="width:15%;height:15%;padding-left:30px"> 
+                </div>
+            {{else}}
+                <div class="row">
+                    
+  
+
+    {{#each products }}
+    
+    <a href="/product/detail/{{masp}}">
+<div class="col-md-12">
+    
+                            {{#if isRecent}}
+                            <div class="thumbnail" style="background-color:rgba(152, 219, 98, 0.788);border:1px solid;shape-outside:border-box;">
+                                {{else}}
+                                  <div class="thumbnail" style="background-color:wheat;border:1px solid;shape-outside:border-box;">
+                               {{/if}}
+                               <div style="padding-top: 1%;padding-left:2%; color:red;font-weight:bold;font-size:30px;">{{isNewProduct tgbatdau}}</div>
+                                <img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" />
+                               
+                                <div style="margin-left:44%;margin-top:1%">
+                                           <form method="post" action="/product/byCat/{{danhmuc}}?idsp={{masp}}">
+                            <button class="btn btn-default" style="background-color:#4784FF;color:#fff;display:flex;align-items:center;width:25%;border-radius:5px">
+                                <span class="fas fa-heart" style="color:red;font-size:150%;"></span> &nbsp
+                                <span style="font-weight:bold;">
+                                   {{watching}}
+                                </span>
+                            </button>
+                        </form>
+                                </div s>
+                                <div class="caption" style="text-align: center;">
+                              
+                                    <h4 style="font-size:2.5vw">{{tensp}}</h4>
+                                    <h4 style="color: red;font-weight: bold;">Giá: {{formatNumber giahientai}} VND</h4>
+                
+                                    <p style="font-style: italic;font-weight: bold;color:red;font-size:1.2vw">{{mota}}</p>
+                                    <h4 style="color: black;">Số lượt đấu giá: {{solandaugia}}</h4>
+                                    {{#if nguoigiugia}}
+                                    <h4 style="color: black;">Người giữ giá: {{hideRealUserName tennguoigiugia}}</h4>
+                                    {{else}}
+                                    <h4 style="color: black;">Người giữ giá: CHƯA CÓ</h4>
+                                    {{/if}}
+                                    <h4 style="color:black;">Thời gian còn lại: {{timeRemain tgketthuc}}</h4>
+                                </div>
+                             
+                            </div>
+                            
+                        </div>  
+                          
+                        </a>
+   {{/each}}
+
+                           
+
+                   
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {{#if showPrevPage}}
+                            <li>
+                                <a href="?page={{prevPage}}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {{/if}}
+                        {{#each pages }}
+                            {{#if isActive }}
+                                <li class="active">
+                                    <a href="?page={{pageValue}}">{{pageValue}}</a>
+                                </li>
+                            {{else}}
+                                <li>
+                                    <a href="?page={{pageValue}}">{{pageValue}}</a>
+                                </li>
+                            {{/if}}
+                        {{/each}}
+                        {{#if showNextPage }}
+                            <li>
+                                <a href="?page={{nextPage}}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        {{/if}}
+                    </ul>
+                </nav>
+            {{/if}}
+        </div>
+    </div>
+</div>

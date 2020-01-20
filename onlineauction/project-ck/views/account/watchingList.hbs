@@ -1,0 +1,121 @@
+{{#section 'title'}}
+    Sản phẩm đang yêu thích
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+            <li><a href="/account">Tài khoản</a></li>
+            <li class="active"><span>Danh sách sản phẩm đang yêu thích</span></li>
+        </ol>
+        <!-- /Đường dẫn -->
+    </div>
+{{/section}}
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <style type="text/css">
+    .btn-account i {
+        margin-top: 2%;
+        font-size: 30px;
+    }
+    
+    .btn-account span {
+        padding-left: 15px;
+        padding-right: 5px;
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+        font-size: 130%;
+    }
+    
+    .btn-account span small {
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+    }
+    </style>
+{{/section}}
+{{#section 'js'}}
+    <script type="text/javascript" src="/assets/bootstrap-4.3.1-dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/assets/jquery-validation-1.12.0/jquery.validate.min.js"></script>
+{{/section}}
+{{> accountPanel this}}
+<div class="col-md-9 container " style="padding-left: 1%; ">
+    {{#if isEmpty}}
+        <h2>Danh sách sản phẩm yêu thích hiện trống</h2>
+    {{else}}
+        {{#each rows}}
+     {{#if isRecent}}
+     <div class="row well well-md " style="background-color:lightpink;border:1px solid royalblue">
+     {{else}}
+        <div class="row well well-md " style="background-color: #fff;border:1px solid royalblue">
+            {{/if}}
+            <div class="media ">
+                <div class="media-left ">
+                    <a href="/product/detail/{{masp}}"><img class="media-object pull-left " src="/images/sp/{{masp}}/main_thumbs.jpg" width="150px " height="130px " style="border:1px solid silver;border-radius:2px">
+                    </a>
+                </div>
+                <div class="media-body ">
+                    <div class="row ">
+                        <!-- Tên sản phẩm -->
+                        <div class="col-md-6">
+                            <a class="media-heading " style="font-size: 150%;font-weight: bold; " href="/product/detail/{{masp}}"> {{tensp}}
+                            </a>
+                           
+                            <br>
+                            <div style="vertical-align: text-bottom">
+                                <span>Người đăng: </span> <span style="font-weight:bold">{{ten}}</span>
+                                <br>
+                                <span>Danh mục: </span> <a href="/product/byCat/{{danhmuc}}" style="text-decoration: none;">{{ tendanhmuc}}</a>
+                                <br>
+                
+                                <span>Ngày đăng: </span> <span style="font-weight: bold;">{{formatDay tgbatdau}}</span>
+                                <br>
+                               
+                                 <span>Hết hạn sau: </span> <span style="color: red;font-weight:bold">{{timeRemain tgketthuc}}</span>
+                                 <br>
+                               <span>Số lượt ra giá hiện tại: </span><span style="color: red;font-weight:bold">{{solandaugia}}</span>
+                              
+                            </div>
+                        </div>
+                        <!-- Giá sản phẩm -->
+                        <div class="col-md-4 " style="padding-top: 1%; border-left: 1px solid black; ">
+                            <!-- Giá hiện tại -->
+                            <span style="font-size: 100%;font-weight:bold ">Giá hiện tại:</span>
+                            
+                            <div style="text-align: left "> 
+                               
+                                <span class="numberical-info-small " style="font-weight: bold; color:#00f; font-size: 120%; text-align: right ">{{formatNumber giahientai}} VND </span>&nbsp</div>
+                            <!-- Giá mua ngay -->
+                            <span style="font-size: 100%;font-weight:bold ">Giá mua ngay: </span>
+                            {{#if giamuangay}}
+                                <div style="text-align:left ">
+                                    <span class="numberical-info-small " style="font-weight: bold; font-size:120%; color:#f00 ">{{formatNumber giamuangay}}</span>&nbspvnd</div>
+                            {{else}}
+                                <div style="text-align: left ">
+                                    <span class="numberical-info-small " style="font-weight: bold; font-size:120%; color:#f00 ">Không có</span>&nbsp</div>
+                            {{/if}}
+                            <!-- Người giữ giá -->
+                            <span style="font-size: 100%;font-weight:bold ">Người giữ giá hiện tại:</span>
+                            <br>
+                            {{#if nguoigiugia}}
+                                <div style="text-align: left">
+                                    <span class="numberical-info-small " style="font-weight: bold; color:#00f; font-size: 120%; text-align: right ">{{hideRealUserName nguoigiugia}} </span></div>
+                            {{else}}
+                                <div style="text-align: left ">
+                                    <span class="numberical-info-small " style="font-weight: bold; color:#00f; font-size: 120%; text-align: right ">Chưa có</span></div>
+                            {{/if}}
+                        </div>
+                        <!-- Thông tin khác -->
+                        
+                       
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    {{/each}}
+    {{/if}}
+</div>

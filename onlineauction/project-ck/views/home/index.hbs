@@ -1,0 +1,358 @@
+{{#section 'title'}} Trang chủ {{/section}}
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+     <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css"> 
+    <link href="/assets/css/docs.css" rel="stylesheet">
+    
+{{/section}}
+{{#section 'js'}}
+
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row" >
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+        </ol>
+        <!-- /Đường dẫn -->
+    </div>
+{{/section}}
+
+{{> categoriesPanel this}}
+<!-- Slider -->
+
+<div class="col-md-9">
+   {{!-- Mới đăng gần đây --}}
+ <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color:slateblue">
+            <span class="panel-title">Mới đăng gần đây</span>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="span12">
+                    <div class="well" style="padding-bottom: 15px;background-color:mistyrose;border:0px">
+                        <div id="myCarousel0" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="row-fluid" >
+                                        {{#each moiDangGanDay1}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center;" >{{tensp}}</h5>
+                                                      {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span >Hết hạn sau:</span> <span style="color: orange;">{{timeRemain tgketthuc}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                                <div class="item">
+                                    <div class="row-fluid">
+                                        {{#each moiDangGanDay2}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                           <span >Hết hạn sau:</span> <span style="color: orange">{{timeRemain tgketthuc}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                            </div>
+                            <!--/carousel-inner-->
+                            <a class="left carousel-control" href="#myCarousel0" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel0" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--/myCarousel-->
+                    </div>
+                    <!--/well-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Top ra giá -->
+    <div class="panel panel-default" style="border-color: #189eff; ">
+        <div class="panel-heading" style=" background: slateblue">
+            <span class="panel-title">Số lượt ra giá cao</span>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="span12">
+                    <div class="well" style="padding-bottom: 15px;background-color:mistyrose;border:0px">
+                        <div id="myCarousel1" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="row-fluid">
+                                        {{#each topRaGia1}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span>Hết hạn sau:</span> {{timeRemain tgketthuc}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                                <div class="item">
+                                    <div class="row-fluid">
+                                        {{#each topRaGia2}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span>Hết hạn sau:</span> {{timeRemain tgketthuc}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                            </div>
+                            <!--/carousel-inner-->
+                            <a class="left carousel-control" href="#myCarousel1" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel1" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--/myCarousel-->
+                    </div>
+                    <!--/well-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top giá cao -->
+    <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color: slateblue">
+            <span class="panel-title">Top giá cao</span>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="span12">
+                    <div class="well" style="padding-bottom: 15px;background-color:mistyrose;border:0px">
+                        <div id="myCarousel2" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="row-fluid">
+                                        {{#each topGiaCao1}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span >Hết hạn sau: {{timeRemain tgketthuc}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                                <div class="item">
+                                    <div class="row-fluid">
+                                        {{#each topGiaCao2}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span>Hết hạn sau:</span> {{timeRemain tgketthuc}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                            </div>
+                            <!--/carousel-inner-->
+                            <a class="left carousel-control" href="#myCarousel2" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel2" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--/myCarousel-->
+                    </div>
+                    <!--/well-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top sắp kết thúc -->
+    <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color: slateblue">
+            <span class="panel-title">Sắp kết thúc</span>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="span12">
+                    <div class="well" style="padding-bottom: 15px;background-color:mistyrose;border:0px">
+                        <div id="myCarousel3" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <div class="row-fluid">
+                                        {{#each ganKetThuc1}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span>Hết hạn sau:</span> <span style="color: red;">{{timeRemain tgketthuc}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                                <div class="item">
+                                    <div class="row-fluid">
+                                        {{#each ganKetThuc2}}
+                                            <div class="col-md-4" style="background-color:lightslategray;padding-top:15px">
+                                                <div class="thumbnail" style="border:2px solid aqua">
+                                                    <a href="/product/detail/{{masp}}"><img src="/images/sp/{{masp}}/main_thumbs.jpg" title="{{tensp}}" alt="{{tensp}}" style="max-width:100%;" /></a>
+                                                    <div class="caption" style=" background-color:lightyellow;margin-top:2px">
+                                                        <h5 style="margin: 0 0; font-weight: bold;text-align:center">{{tensp}}</h5>
+                                                         {{#isShort tensp}}
+                                                     
+                                                      {{/isShort}}
+                                                        <div>
+                                                            <span>Giá hiện tại: </span> {{formatNumber giahientai}} VND
+                                                            <br/>
+                                                            <span>Số lượt đấu giá: </span> {{solandaugia}}
+                                                            <br/>
+                                                            <span>Hết hạn sau:</span> <span style="color: red;">{{timeRemain tgketthuc}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {{/each}}
+                                    </div>
+                                    <!--/row-fluid-->
+                                </div>
+                                <!--/item-->
+                            </div>
+                            <!--/carousel-inner-->
+                            <a class="left carousel-control" href="#myCarousel3" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#myCarousel3" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <!--/myCarousel-->
+                    </div>
+                    <!--/well-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

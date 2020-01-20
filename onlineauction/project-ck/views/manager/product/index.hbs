@@ -1,0 +1,80 @@
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+{{/section}}
+{{#section 'js'}}
+    <script type="text/javascript">
+
+
+    $('.removePro').on('click', function() {
+        var id = $(this).data('id');
+        $('#txtDelProId').val(id);
+        $('#frmDeletePro').submit();
+    });
+    </script>
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+            <li class="active"><span>Quản trị sản phẩm</span></li>
+        </ol>
+        <!-- /Đường dẫn -->
+    </div>
+{{/section}}
+{{> managerPanel this}}
+<div class="col-md-9">
+    {{#if error}}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> {{error}}
+        </div>
+    {{/if}}
+    <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color: slateblue;">
+            <span class="panel-title">Danh sách sản phẩm</span>
+        </div>
+        <div class="panel-body">
+           
+            <form method="post" action="/manager/product/delete" id="frmDeletePro">
+                <input type="hidden" name="proId" id="txtDelProId">
+            </form>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá khởi điểm</th>
+                        <th>Giá hiện tại</th>
+                        <th>ID người đăng</th>
+                        <th>ID người giữ giá</th>
+                        <th>Gỡ sản phẩm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each products}}
+                        <tr>
+                            <td>{{masp}}</td>
+                            <td>{{tensp}}</td>
+                            <td>{{giakhoidiem}}</td>
+                            <td align="center">{{giahientai}}</td>
+                            <td align="center" >{{manguoiban}}</td>
+                            {{#if nguoigiugia}}
+                             <td align="center" >{{nguoigiugia}}</td>
+                             {{else}}
+                              <td align="center" >KHÔNG CÓ</td>
+                             {{/if}}
+                            <td align="center">
+                                 <a href="javascript:;" class="btn btn-xs btn-danger removePro" data-id={{masp}}>
+                                    <span class="fas fa-trash-alt"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

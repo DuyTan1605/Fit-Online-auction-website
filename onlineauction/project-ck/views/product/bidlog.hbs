@@ -1,0 +1,165 @@
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+{{/section}}
+{{#section 'js'}}
+    <script type="text/javascript">
+
+    
+        $(function(){
+            $('div[onload]').trigger('onload');
+            document.getElementById("giaphaitra").value = document.getElementById("datgia").value;
+        });
+
+         $('#datgia').on('touchspin.on.startspin', function () {
+            
+            document.getElementById("giaphaitra").value = document.getElementById("datgia").value;
+        });
+
+    $('.banAcc').on('click', function() {
+        var id = $(this).data('id');
+        $('#txtBanAccId').val(id);
+        $('#frmBanAcc').submit();
+    });
+
+    </script>
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+            <li><a href="/product/detail/{{idsp}}">Sản phẩm</a></li>
+            <li class="active"><span>Lịch sử đấu giá</span></li>
+        </ol>
+    </div>
+{{/section}}
+
+{{> categoriesPanel}}
+<div class="col-md-9">
+    {{#if showError }}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> {{ errorMsg }}
+        </div>
+    {{/if}}
+    <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color: slateblue;">
+            <span class="panel-title">Lịch sử đấu giá sản phẩm</span>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/product/bidlog/{{idsp}}" id="frmBanAcc">
+                <input type="hidden" name="accId" id="txtBanAccId">
+            </form>
+           
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Thời điểm</th>
+                        <th>Người mua</th>
+                        <th>Giá đưa ra</th>
+                        <th>Đánh giá</th>
+                         
+                          {{#if manguoiban1}}
+                        <th>Cấm đấu giá</th>
+                        {{/if}}
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                     {{#if layoutModels.account.permission}}
+                    {{#each ragia}}
+                        <tr>
+                            <td>{{shortDateTime thoigiantra}}</td>
+                            <td>{{ten}}</td>
+                            <td>{{formatNumber giaduara}} </td>
+                           {{!-- <button><button type="submit" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">Xem đánh giá</button></button> --}}
+                             <td>{{nhanxet}}</td>
+                           {{#isEqual ../layoutModels.account.id manguoiban}}
+                            <td style="padding-left:5%">
+                                <a href="javascript:;" class="btn btn-xs btn-primary banAcc" data-id="{{id}}" title="reset">
+                                    <span class="fas fa-ban"></span>
+                                </a>
+                               
+                            </td>
+                            {{/isEqual}}
+
+                            <div id="confirmModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Đánh giá</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            
+                                                <div class="input-group" style="font-size:150%;">
+                                                   
+                                                   {{nhanxet}}
+                                                     
+                                                </div>
+                                                <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
+                                                  
+                                                    <button type="button" class="btn btn-labeled btn-danger" data-dismiss="modal" style="width: 100%">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i> </span> Hủy</button>
+                                                </div>
+                                                
+                                           
+                                        </div>
+                                        <div class="modal-footer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </tr>
+                    {{/each}}
+                    {{else}}
+                     {{#each ragia}}
+                        <tr>
+                            <td>{{shortDateTime thoigiantra}}</td>
+                           
+                            <td>{{hideRealUserName ten}}</td>
+                            
+                            <td>{{formatNumber giaduara}}</td>
+                           
+                           
+                            {{!-- <button><button type="submit" class="btn btn-success" data-toggle="modal" data-target="#confirmModal" style="width:50%">Xem đánh giá</button></button> --}}
+                            <td>{{nhanxet}}</td>
+                            <div id="confirmModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Đánh giá</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            
+                                                <div class="input-group" style="font-size:150%;">
+                                                   
+                                                   
+                                                     <input type="text" class="btn btn-labeled" style="font-size:100%;width:50%;color:red;font-weight:bold" id="giaphaitra" name="giaphaitra" readonly></input>
+                                                </div>
+                                                <div class="col-md-12" style="padding-left: 0; padding-right: 0;">
+                                                  
+                                                    <button type="button" class="btn btn-labeled btn-danger" data-dismiss="modal" style="width: 100%">
+                                                        <span class="btn-label"><i class="glyphicon glyphicon-remove"></i> </span> Hủy</button>
+                                                </div>
+                                                
+                                           
+                                        </div>
+                                        <div class="modal-footer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                            
+                    {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

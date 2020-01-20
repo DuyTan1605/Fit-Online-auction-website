@@ -1,0 +1,148 @@
+<!-- Header -->
+<div class="container-fluid" style="width: 84%; max-width: none!important; margin-right: auto; margin-left: auto">
+    <div class="row" style="display:flex; background: #189eff;padding-top: 2%;padding-bottom: 2%; align-items:flex-end;border-top-left-radius: 5px;border-top-right-radius: 5px;">
+        <!-- Khung tiêu đề -->
+        <div class="col-md-2" style="display:flex;align-items:center;">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <a class="logo" href="/home ">
+                    <img width="150" height="150" src="/images/logo_website.jpg" alt="logo">
+                </a>
+            </div>
+        </div>
+        <div class="col-md-7" style="display:flex;align-items:flex-end;margin-left:5%">
+            <!-- Khung search -->
+            <!--<form class="form-inline" style="display:table-cell;text-align:center;vertical-align:middle;">-->
+               
+            <form method="get" action="/search" autocomplete="false" id="searchForm">
+                <div class="input-group col-md-11">
+                    <!-- Dropdown -->
+                    <div class="input-group-btn search-panel">
+                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background-color:#EDEEF2">
+                            <span id="search-concept">Tất cả</span> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#danhmuc">Tất cả</a></li>
+                            {{#each layoutModels.categories }}
+                                <li><a href="#{{id}}">{{tendanhmuc}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                    <!-- Textbox search -->
+                   
+                    <input type="text" placeholder="Nhập tên sản phẩm" class="form-control inputtext" name="word" size="50"/>
+                    <input type="hidden" name="cat" value="danhmuc" id="search-param">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
+                </div>
+            </form>
+            <!--</form>-->
+        </div>
+        <!-- /Khung search -->
+        <div class="col-md-3" style="display:flex;align-items:flex-end;padding-left: 3%;">
+            {{#if layoutModels.isLogged }}
+                {{!-- <i class="glyphicon glyphicon-user pull-left" style="font-size: 25px; color: #fff"></i> --}}
+                <i class="fas fa-user-circle" style="font-size: 35px; color: #fff;height:50px;margin-right:4px" ></i>
+                <div class="dropdown" style="margin-bottom: 15px;width:100%">
+                    <button class="dropbtn">
+                        <span style="height: 25px;">
+                   Chào, {{getName layoutModels.account.name}} !
+                    <br/>
+                    
+                    </span>
+                    </button>
+                    <div class="dropdown-content">
+                       <a href="/account/profile"><i class="fas fa-id-card"></i> Thông tin cá nhân</a>
+                        <a href="/account/changePassword"><i class="fas fa-key"></i> Đổi mật khẩu</a>
+                        <a id="logoutLink" href="javascript:;"><i class="fas fa-door-open"></i> Thoát</a>                      
+                    </div>
+                </div>
+            {{else}}
+                <button class="btn btn-default col-md-2" data-toggle="modal" data-target="#signinModal" style="border:none;background-color:transparent;">
+                    <span class="fas fa-sign-in-alt" style="font-size:150%;color:#fff;"></span>
+                    <span style="color:#fff;margin-left:15%;font-size:medium">Đăng nhập</span>   
+                   
+                </button>
+                
+                <!-- Modal -->
+                <div id="signinModal" class="modal fade" role="dialog">
+                     <div class="modal-dialog modal-sm" >
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Đăng nhập</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-signin" method="post" action="/account/login">
+              <div class="form-label-group">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+                <label for="inputEmail">Email</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required>
+                <label for="inputPassword">Mật khẩu</label>
+              </div>
+
+              <div class="custom-control custom-checkbox mb-3">
+                  
+                
+               <label class="custom-control-label" style="margin-left: 5%;"> <a href="/account/rePass">Quên mật khẩu?</a></label>
+                <label class="custom-control-label" style="margin-left: 10%;"> <a href="/account/register">Đăng ký</a></label>
+               
+              </div>
+              
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng nhập</button>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
+              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+            </form>
+                            </div>
+                            <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div> -->
+                        </div>
+                    </div> 
+           
+	
+                </div>
+                <!-- Modal -->
+            {{/if}}
+        </div>
+    </div>
+    <!-- /Khung tiêu đề -->
+    <div id="nav" class="row navbar" style="background-color:slateblue;padding-top:1%;padding-bottom:1%;border-radius:0">
+        <!-- Navigation bar -->
+        <ul style="list-style:none;text-align:center;">
+            <li style="width:15%;"><a href="/home">Trang chủ</a></li>
+            
+             {{#isEqual layoutModels.isLogged false}}
+              <li style="width:15%;"><a href="/account/login">Đăng nhập</a></li>
+              <li style="width:15%;"><a href="/account/register">Đăng ký</a></li>
+              {{else}}
+               <li style="width:15%;"><a href="/account/profile">Tài khoản</a></li>
+             {{/isEqual}}
+            {{#if layoutModels.isLogged}}
+             {{#isNotEqual layoutModels.account.permission 2}}
+             <li style="width:15%;"><a href="/account/newAuction">Đăng bán</a></li>
+             <li style="width:15%;"><a href="/account/bidingList">Lịch sử đấu giá</a></li>
+               <li style="width:15%;"><a href="/account/wonList">Kết quả đấu giá</a></li>
+                {{/isNotEqual}}
+            <li style="width:15%;"><a href="/account/watching">Sản phẩm yêu thích</a></li>
+           
+           
+            
+             {{/if}}
+            {{#isEqual layoutModels.account.permission 2}}
+             <li style="width:15%;"><a href="/manager/account">Quản lý</a></li>
+            {{/isEqual}}
+           
+        </ul>
+    </div>
+    <!-- /Navigation bar -->
+    {{{_sections.breadcrumbs}}}
+</div>

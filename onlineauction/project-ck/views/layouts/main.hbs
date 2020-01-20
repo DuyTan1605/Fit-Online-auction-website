@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sàn đấu giá online</title>
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/font-awesome-5.11.2/css/fontawesome.min.css">
+    <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css"> 
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   
+    {{{_sections.css}}}
+</head>
+
+<body style="background: lightcyan">
+     {{> header}}
+   
+    <form id="frmLogout" method="post" action="/account/logout"></form>
+    <div class="container-fluid" style="width: 85%; max-width: none!important; margin-right: auto; margin-left: auto;">
+        <div class="row">
+           {{{body}}}
+        </div>
+        
+    </div>
+    <footer style="background: #189eff;margin-left:5%;margin-right:5%;border-radius:5px;text-align:center;height:100px;padding-top:2%">
+            <p style="font-weight: bold;font-size:30px">&copy; K17 FIT HCMUS</p>
+        </footer>
+    <script type="text/javascript" src="/assets/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/assets/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $('#logoutLink').on('click', function() {
+        $('#frmLogout').submit();
+    });
+    $(document).ready(function(e) {
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#", "");
+            var concept = $(this).text();
+            $('.search-panel span#search-concept').text(concept);
+            $('.input-group #search-param').val(param);
+        });
+    });
+
+    </script>
+    {{{_sections.js}}}
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+{
+  "name": "auction-k17-fit-hcmus",
+  "version": "1.0.0",
+  "description": "Make a Auction Website using HTML, CSS and NodeJS",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "engines": {
+    "node": "10.x"
+  },
+  "author": "K17 fit hcmus",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parse": "^0.1.0",
+    "dateformat": "^3.0.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "express-handlebars-sections": "^1.0.1",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.17.0",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mustache": "^3.1.0",
+    "mv": "^2.1.1",
+    "mysql": "^2.17.1",
+    "nodemailer": "^6.4.1",
+    "path": "^0.12.7",
+    "q": "^1.5.1",
+    "serve-favicon": "^2.5.0",
+    "wnumb": "^1.2.0"
+  }
+}

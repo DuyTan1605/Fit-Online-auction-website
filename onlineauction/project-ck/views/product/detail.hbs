@@ -1,0 +1,333 @@
+{{#section 'title'}}
+    Chi tiết sản phẩm
+{{/section}}
+
+{{#section 'css'}}
+    <link href="/assets/site.css" rel="stylesheet" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+
+    <style type="text/css">
+        .padding {
+            padding-top: 8px;
+        }
+        .checked {
+     color: yellow;
+    }
+    </style>
+{{/section}}
+
+{{#section 'js'}}
+{{/section}}
+
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+          
+            <li class="active" style="font-weight:bold"><span>Chi tiết sản phẩm</span></li>
+        </ol>
+    </div>
+{{/section}}
+
+{{> categoriesPanel}}
+
+<div class="container col-md-9">
+    
+        <!-- Tên sản phẩm -->
+        <div class="row" style="margin-bottom: 50px;margin-left:10%">
+        <div class="card" style="width: 100%">
+            <div class="card-body">
+    <p class="card-text" style="font-weight: bold;font-size:30px">{{product.tensp}}</p>
+    </div>
+    <img style="width:500px;height:500px" src="/images/sp/{{product.masp}}/main_thumbs.jpg" class="card-img-top" alt="/images/sp/{{product.masp}}/main_thumbs.jpg">
+    </div>
+    
+    </div>
+    <div class="row" style="margin-left:10%;margin-top:5px;margin-bottom:0">
+     
+    <p class="card-text" style="font-weight: bold;font-size:20px;font-style:italic">Hình Ảnh Phụ</p>
+    
+    </div>
+        <!-- /Tên sản phẩm -->
+        <div class="row" style="margin-bottom: 150px;">
+            <div class="col-md-1"></div>
+            <!-- Hình ảnh sản phẩm -->
+            <div class="col-md-9" style="width: 800px;height: 250px;">
+                <!-- Hình ảnh -->
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="wrapper">
+                        <div class="item active">
+                            <img src="/images/sp/{{product.masp}}/main_thumbs.jpg">
+                        </div>
+                        <div class="item">
+                            <img src="/images/sp/{{product.masp}}/1.jpg">
+                        </div>
+                        <div class="item">
+                            <img src="/images/sp/{{product.masp}}/2.jpg">
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+          
+            <!-- /Hình ảnh sản phẩm -->
+        </div>
+      
+        
+       <div class="row" style="padding-top: 2%;margin-left:1%">
+            <!-- Thông tin sản phẩm -->
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <span style="font-size: 150%;font-weight: bold;font-style:italic">Thông tin sản phẩm</span>
+                <div class="col-md-12" style="padding:1%;">
+                    {{{product.thongtin}}}
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <!-- /Thông tin sản phẩm -->
+
+        <div class="row">
+            <!-- Thông tin -->
+            {{!-- <div class="col-md-2"></div> --}}
+             <span style="font-size: 150%;font-weight: bold;font-style:italic;margin-left:12%">Thông tin đấu giá</span>
+            <div class="col-md-12" style="border:2px solid;border-color:#1057AF;padding:1.5% 1%;margin-top: 2%;border-radius:5px;background-color: wheat;">
+                <div class="row" style="text-align:center;">
+                  <div class="col-md-7" >
+                        Hết hạn sau
+                        <br>
+                        <span class="numberical-info">{{timeRemain1 product.tgketthuc}} </span>
+                        <br>
+                        
+                    </div>
+                    <div class="col-md-5">
+                        <form method="post" action="/product/detail/{{product.masp}}">
+                            <button class="btn btn-default" style="background-color:#4784FF;color:#fff;display:flex;align-items:right;width:50%;border-radius:5px">
+                                <span class="fas fa-heart" style="color:red;font-size:150%;"></span> &nbsp
+                                <span style="font-weight:bold;">
+                                    {{watching}}
+                                </span>
+                            </button>
+                        </form>
+                        <br>
+                        <form method="get" action="/product/bidlog/{{product.masp}}">
+                            <button class="btn btn-default" style="background-color:#4784FF;color:#fff;display:flex;align-items:right;width:50%;margin-top:1%;border-radius:5px">
+                                <span class="glyphicon glyphicon-th-list" style="color:orange;font-size:150%;"></span> &nbsp&nbsp
+                                <span style="font-weight:bold;">
+                                    Lịch sử đấu giá
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;margin-top:5%;">
+                    <div class="col-md-6">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-10" style="text-align:center;">
+                        Giá hiện tại:
+                          
+                            <span class="numberical-info">{{formatNumber product.giahientai}} VND</span> 
+                            <br>
+                                
+                         Người giữ giá:
+                          {{#if product.tennguoigiugia}}
+                           
+                             
+                           
+                          <span class="numberical-info">{{hideRealUserName product.tennguoigiugia}}</span>
+
+                            
+                          <br>
+                          
+                         Điểm đánh giá người giữ giá:  <span style="font-weight: bold;color:red">{{product.diemcongnguoigiugia}} / {{product.diemtrunguoigiugia}} </span>
+                          {{else}}
+                            <span class="numberical-info">CHƯA CÓ</span>
+                           {{/if}}
+                           <br>
+                          
+                        </div>
+                         
+                         
+                      
+
+                        <form action="/product/bid/{{product.masp}}" method="get">
+                            <button class="btn btn-default" style="width:50%;height:7%;margin-top:3%;margin-left:15%;box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2);border: none;border-radius: 5px;background-color: #0CC81E;">
+                                <span style="font-weight: bold;color: #fff;">Đấu giá</span>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-10" style="text-align:left;">
+                            Giá mua ngay:
+                            
+                            {{#if product.giamuangay}}
+                            <span class="numberical-info">{{formatNumber product.giamuangay}}</span> VND
+                            {{else}}
+                            <span class="numberical-info">KHÔNG CÓ</span>
+                            {{/if}}
+                        </div>
+                        {{#if product.giamuangay}}
+                        <form action="/product/buynow/{{product.masp}}" method="post">
+                            <button class="btn btn-default" style="width:50%;height:7%;margin-top:13%;margin-right:15%;box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.2);border: none;border-radius: 5px;background-color: rgb(226, 103, 21);">
+                                <span style="font-weight: bold;color: #fff;">Mua ngay</span>
+                            </button>
+                        </form>
+                        {{/if}}
+                    </div>
+                </div>
+                
+            </div>
+            {{!-- <div class="col-md-2"></div> --}}
+            <!-- /Thông tin -->
+        </div>
+
+        <div class="row" style="margin-top: 1%; margin-bottom:2%;">
+            <!-- Thông tin đấu giá -->
+            <div class="col-md-6" style="border: 2px solid;">
+                <!-- Bảng 1 -->
+                <div class="row odd-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Mã sản phẩm
+                    </div>
+                    <div class="col-sm-6">
+                        {{product.masp}}
+                    </div>
+                </div>
+                <div class="row even-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Số lượt đấu giá
+                    </div>
+                    <div class="col-sm-6">
+                        {{product.solandaugia}}
+                    </div>
+                </div>
+                <div class="row odd-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Bắt đầu
+                    </div>
+                    <div class="col-sm-6">
+                        {{shortDateTime product.tgbatdau}}
+                    </div>
+                </div>
+                <div class="row even-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Kết thúc
+                    </div>
+                    <div class="col-sm-6">
+                        {{shortDateTime product.tgketthuc}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="border: 2px solid;margin-left: -2px;">
+                <!-- Bảng 2 -->
+                <div class="row odd-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Giá hiện tại
+                    </div>
+                    <div class="col-sm-6">
+                        {{formatNumber product.giahientai}} VND
+                    </div>
+                </div>
+                <div class="row even-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Giá mua ngay
+                    </div>
+                    <div class="col-sm-6">
+                        {{#if product.giamuangay}}
+                        {{formatNumber product.giamuangay}} VND
+                        {{else}}
+                        KHÔNG CÓ
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="row odd-row">
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Điểm đánh giá người bán
+                    </div>
+                    {{#if product.diemcongnguoiban}}
+                    <div class="col-sm-6">
+                        {{product.diemcongnguoiban}} / {{product.diemtrunguoiban}} 
+                    </div>
+                    {{else}}
+                     <div class="col-sm-6">
+                        CHƯA CÓ ĐIỂM ĐÁNH GIÁ
+                    </div>
+                    {{/if}}
+                </div>
+                <div class="row even-row" >
+                    <div class="col-sm-6" style="font-weight: bold;">
+                        Người đăng
+                    </div>
+                   
+                    <div class="col-sm-6">
+                        <a href="#">{{product.ten}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Thông tin đấu giá -->
+         {{#if length_relevant}}
+<div class="row" style="margin-left:10%;margin-top:5px;margin-bottom:0">
+    
+    <p class="card-text" style="font-weight: bold;font-size:20px;font-style:italic">Sản phẩm cùng loại</p>
+    
+    </div>
+    
+     <div class="row" style="margin-bottom: 200px;">
+            <div class="col-md-1"></div>
+            <!-- Hình ảnh sản phẩm -->
+            <div class="col-md-9" style="width: 800px;height: 250px;">
+                <!-- Hình ảnh -->
+                <div id="myCarousel1" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel1" data-slide-to="1"></li>
+                        <li data-target="#myCarousel1" data-slide-to="2"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" id="wrapper">
+                        <div class="item active">
+                            <a href="/product/detail/{{first_relevant}}"><img src="/images/sp/{{first_relevant}}/main_thumbs.jpg"></a>
+                        </div>
+                        {{#each arr_relevant}}
+                       
+                        <div class="item">
+                            <a href="/product/detail/{{masp}}"> <img src="/images/sp/{{masp}}/main_thumbs.jpg"></a>
+                        </div>
+                        
+                        {{/each}}
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel1" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel1" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+       
+    {{/if}}
+</div>

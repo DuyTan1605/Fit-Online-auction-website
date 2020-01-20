@@ -1,0 +1,79 @@
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+{{/section}}
+{{#section 'js'}}
+    <script type="text/javascript">
+
+    $('.removeCategory').on('click', function() {
+        var id = $(this).data('id');
+        $('#txtDelCatId').val(id);
+        $('#frmDeleteCategory').submit();
+    });
+    </script>
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+            <li class="active"><span>Quản trị danh mục</span></li>
+        </ol>
+        <!-- /Đường dẫn -->
+    </div>
+{{/section}}
+{{> managerPanel this}}
+<div class="col-md-9">
+    {{#if error}}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> {{ error }}
+        </div>
+    {{/if}}
+    <div class="panel panel-default" style="border-color: #189eff;">
+        <div class="panel-heading" style="background-color: slateblue;">
+            <span class="panel-title">Thông tin danh mục</span>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="/manager/category/delete" id="frmDeleteCategory">
+                <input type="hidden" name="catId" id="txtDelCatId">
+            </form>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã danh mục</th>
+                        <th>Tên danh mục</th>
+                         <th>Tên danh mục cha</th>
+                        <th>Sửa</th>
+                         <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each layoutModels.categories}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td>{{tendanhmuc}}</td>
+                             <td>{{tendanhmuccha}}</td>
+                            <td>
+                                <a href="/manager/category/edit?id={{id}}&idcha={{id_danhmuccha}}" class="btn btn-xs btn-primary" title="edit">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                               
+                            </td>
+                             <td>
+                               
+                                <a href="javascript:;" class="btn btn-xs btn-danger removeCategory" data-id="{{id}}">
+                                    <span class="fas fa-trash-alt"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <a href="/manager/category/add" class="btn btn-primary" title="add">
+                <span class="fas fa-plus"></span> Thêm
+            </a>
+        </div>
+    </div>
+</div>

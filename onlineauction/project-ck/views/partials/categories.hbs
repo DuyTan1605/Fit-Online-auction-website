@@ -1,0 +1,11 @@
+<div class="list-group" >
+	{{#each layoutModels.catListDadFinal}}
+  <a href="#" class="list-group-item active" style="background-color:slateblue">{{tendanhmuc}}</a>
+  <div class="list-group">
+	 {{#each listdanhmuccon}}
+    <a href="/product/byCat/{{id}}" class="list-group-item">{{tendanhmuc}}</a>
+    {{/each}}
+	
+  </div>
+  {{/each}}
+</div>

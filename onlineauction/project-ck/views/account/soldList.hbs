@@ -1,0 +1,125 @@
+{{#section 'title'}}
+    Danh sách thắng
+{{/section}}
+{{#section 'breadcrumbs'}}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-arrow">
+            <li><a href="/home">Trang chủ</a></li>
+            <li><a href="/account">Tài khoản</a></li>
+            <li class="active"><span>Danh sách đã bán</span></li>
+        </ol>
+        <!-- /Đường dẫn -->
+    </div>
+{{/section}}
+{{#section 'css'}}
+    <link href="/assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/assets/css/bootstrap-social.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/breadcrumbs.css">
+    <link href="/assets/css/docs.css" rel="stylesheet">
+    <style type="text/css">
+    .btn-account i {
+        margin-top: 2%;
+        font-size: 30px;
+    }
+    
+    .btn-account span {
+        padding-left: 15px;
+        padding-right: 5px;
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+        font-size: 130%;
+    }
+    
+    .btn-account span small {
+        width: 100%;
+        display: inline-block;
+        text-align: left;
+    }
+    </style>
+{{/section}}
+{{#section 'js'}}
+    <script type="text/javascript" src="/assets/bootstrap-4.3.1-dist/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="/assets/jquery-validation-1.12.0/jquery.validate.min.js"></script>
+{{/section}}
+{{> accountPanel this}}
+<div class="col-md-9">
+    <div class="panel">
+        <div class="panel-heading" style="background-color:slateblue;">
+            <span class="panel-title">Danh sách đã bán</span>
+        </div>
+        <div class="panel-body">
+            {{#if isEmpty}}
+                <h2>Bạn chưa bán thành công sản phẩm nào.</h2>
+            {{else}}
+                
+                        {{#each rows}}
+     
+    <div class="row well well-md " style="background-color: #fff;border:1px solid royalblue">
+           
+            <div class="media ">
+                <div class="media-left ">
+                    <a href="/product/detail/{{masp}}"><img class="media-object pull-left " src="/images/sp/{{masp}}/main_thumbs.jpg" width="150px " height="130px " style="border:1px solid silver;border-radius:2px">
+                    </a>
+                </div>
+                <div class="media-body ">
+                    <div class="row ">
+                        <!-- Tên sản phẩm -->
+                        <div class="col-md-6">
+                            <a class="media-heading " style="font-size: 150%;font-weight: bold; " href="/product/detail/{{masp}}"> {{tensp}}
+                            </a>
+                           
+                            <br>
+                            <div style="vertical-align: text-bottom">
+                                <span>Người mua: </span> <span style="font-weight:bold">{{ten}}</span>
+                                <br>
+                                <span>Danh mục: </span> <a href="/product/byCat/{{danhmuc}}" style="text-decoration: none;">{{ tendanhmuc}}</a>
+                                <br>
+                
+                                <span>Ngày đăng: </span> <span style="font-weight: bold;">{{formatDay tgbatdau}}</span>
+                                <br>
+                               
+                                 
+                               <span>Số lượt ra giá hiện tại: </span><span style="color: red;font-weight:bold">{{solandaugia}}</span>
+                              
+                            </div>
+                        </div>
+                        <!-- Giá sản phẩm -->
+                        <div class="col-md-4 " style="padding-top: 1%; border-left: 1px solid black; ">
+                            <!-- Giá hiện tại -->
+                            <span style="font-size: 100%;font-weight:bold ">Giá đưa ra:</span>
+                            
+                            <div style="text-align: left "> 
+                               
+                                <span class="numberical-info-small " style="font-weight: bold; color:#00f; font-size: 120%; text-align: right ">{{formatNumber giahientai}} VND </span>&nbsp</div>
+                            <!-- Giá mua ngay -->
+                            <span style="font-size: 100%;font-weight:bold ">Giá khởi điểm: </span>
+                           
+                                <div style="text-align:left ">
+                                    <span class="numberical-info-small " style="font-weight: bold; font-size:120%; color:#f00 ">{{formatNumber giakhoidiem}} VND</span></div>
+                           <span style="font-size: 100%;font-weight:bold ">Người chiến thắng: </span>
+                           
+                                <div style="text-align:left ">
+                                    <span class="numberical-info-small " style="font-weight: bold; font-size:120%; color:#f00 ">{{ten}}</span></div>
+                           
+                        </div>
+                        <!-- Thông tin khác -->
+                        
+                         <div class="col-md-2" style="padding-top: 1%; color:red;font-weight:bold;font-size:20px;width:100%;padding-left:50%"><a href="/account/rateBuyer?idAcc={{manguoiban}}&idPro={{masp}}&idM={{id}}" class="btn btn-primary" title="Đánh giá">
+                                            Đánh giá người mua
+                                        </a></div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    {{/each}}
+                
+            {{/if}}
+        </div>
+        <!-- panel body -->
+        <!-- form -->
+    </div>
+</div>
